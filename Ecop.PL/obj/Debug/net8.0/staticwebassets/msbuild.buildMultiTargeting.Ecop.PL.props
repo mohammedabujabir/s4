@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Ecop.PL.props" />
+</Project>

@@ -1,0 +1,83 @@
+﻿@model ViolationFormVM
+
+@section Header {
+
+    traffic_violations
+}
+<div class="col-md-12">
+
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Create</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form asp-controller="Citizens" asp-action="Create" enctype="multipart/form-data">
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="Video"></label>
+                    <input asp-for="Video" class="form-control-file imageinput">
+                </div>
+                <div class="form-group">
+                    <img src="#" id="imageprivew" style="display:none" width="80px;" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <input asp-for="Description" class="form-control textarea" placeholder="Enter Service Description">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Reported_Date"></label>
+                    <input asp-for="Reported_Date" class="form-control" placeholder="Enter Service Name">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Car_Number"></label>
+                    <input asp-for="Car_Number" class="form-control" placeholder="Enter Service Name">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Location"></label>
+                    <input asp-for="Location" class="form-control" placeholder="Enter Service Name">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Status"></label>
+                    <input asp-for="Status" class="form-control" placeholder="Enter Service Name">
+                </div>
+                <div class="form-group">
+                    <label asp-for="CitizenId"></label>
+                    <input asp-for="CitizenId" class="form-control" placeholder="Enter Service Name">
+                </div>
+
+
+                <!-- /.card-body -->
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+@section scripts {
+
+    <script src="https://cdn.tiny.cloud/1/bqs89m6ei860xqn02m4iw7nani9rvjn3rmg13yxe3x3dg2ve/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: '.textarea'
+        });
+        document.querySelector(".imageinput").addEventListener("change", () => {
+            const file = event.target.files[0];
+            const imagepreview = document.querySelector(".imageprivew");
+            if (file) {
+                const reder = new FileReader();
+
+                reder.onload = function (e) {
+
+                    imageprivew.src = e.target.result;
+                    imageprivew.style.display = "block";
+                }
+                reder.readAsDataURL(file);
+            }
+        })
+    </script>
+}
